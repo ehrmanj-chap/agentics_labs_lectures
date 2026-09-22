@@ -1,0 +1,21 @@
+{
+  "starter": "You are the planning component in a classroom simulation for a tiny museum. A school wants 24 educational prints delivered by October 15. Today is October 1 in this fictional scenario. Total budget: $240 including shipping. Product preference: River print. Any substitute requires customer approval. Spending over $200 requires manager approval.\n\nYou have no connected tools in this exercise. I play the tool operator and supply observations. Available simulated tools: LOOKUP_INVENTORY, CALCULATE_QUOTE, REQUEST_APPROVAL, DRAFT_REPLY.\n\nFor each turn, briefly report GOAL, CURRENT STATE, NEXT ACTION + TOOL, EXPECTED OBSERVATION, and STOP / ESCALATE status. Choose one next action and wait for my tool result. Treat unobserved facts as unknown. Keep earlier confirmed facts unless I update them. Do not claim to send, buy, reserve, or complete a real transaction. Stop when the quote is ready with required approvals recorded, or escalate if the constraints cannot be met.\n\nBegin with the next action you need. Keep the response under 150 words.",
+  "cards": [
+    {
+      "title": "Tool result 1 \u00b7 Initial inventory",
+      "text": "LOOKUP_INVENTORY result: River prints cost $8 each, with 30 available. Garden prints cost $7 each, with 40 available. Standard delivery takes 5 calendar days from today and costs $15 per order. The budget includes delivery. Calculate a quote, but do not send or purchase anything."
+    },
+    {
+      "title": "Observation 2 \u00b7 Stock changed",
+      "text": "UPDATE: The inventory system corrected its count. Only 12 River prints are available. Garden stock is still 40. The customer still needs 24 prints. What state changes, and what should happen next?"
+    },
+    {
+      "title": "Observation 3 \u00b7 Deadline moved",
+      "text": "UPDATE: The customer now needs delivery by October 4. Standard delivery still takes 5 calendar days. Rush delivery takes 2 calendar days and costs $45 per order instead of $15. Today is still October 1. Any substitute needs customer approval and totals over $200 need manager approval. What can be done, and what must wait?"
+    },
+    {
+      "title": "Observation 4 \u00b7 Approvals arrived",
+      "text": "REQUEST_APPROVAL result: The customer accepts 24 Garden prints. The manager approves the $213 total including rush delivery. Use the 2-calendar-day rush option. Draft a short customer reply and state the final stop condition. No real order has been placed."
+    }
+  ]
+}

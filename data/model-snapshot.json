@@ -1,0 +1,39 @@
+{
+  "retrieved": "2026-09-22",
+  "source": "https://llm-stats.com/models/qwen3-32b",
+  "scope": "Six selected models from one cost-efficiency plot. Not a PantherAI availability list.",
+  "metric": "LLM Stats composite score, not percent correct",
+  "price_unit": "Listed blended API USD per million tokens; not a subscription price or student charge. Provider, routing and mix affect cost.",
+  "models": [
+    {
+      "name": "Gemma 4 E4B",
+      "score": 13.8,
+      "price": 0.024
+    },
+    {
+      "name": "GPT OSS 120B",
+      "score": 28.7,
+      "price": 0.043
+    },
+    {
+      "name": "DeepSeek V4 Flash 0731",
+      "score": 44.1,
+      "price": 0.066
+    },
+    {
+      "name": "Qwen3 32B",
+      "score": 18.4,
+      "price": 0.09
+    },
+    {
+      "name": "DeepSeek V4.1 Flash",
+      "score": 51.6,
+      "price": 0.24
+    },
+    {
+      "name": "Claude Opus 5.5",
+      "score": 59.8,
+      "price": 4.76
+    }
+  ]
+}

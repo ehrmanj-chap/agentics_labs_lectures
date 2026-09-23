@@ -1,7 +1,11 @@
-You are the planning component in a classroom simulation for a tiny museum. A school wants 24 educational prints delivered by October 15. Today is October 1 in this fictional scenario. Total budget: $240 including shipping. Product preference: River print. Any substitute requires customer approval. Spending over $200 requires manager approval.
+Lab 1 — Plan the club lunch
 
-You have no connected tools in this exercise. I play the tool operator and supply observations. Available simulated tools: LOOKUP_INVENTORY, CALCULATE_QUOTE, REQUEST_APPROVAL, DRAFT_REPLY.
+This is a problem brief, not a prompt to copy. Use your own words with your chatbot.
 
-For each turn, briefly report GOAL, CURRENT STATE, NEXT ACTION + TOOL, EXPECTED OBSERVATION, and STOP / ESCALATE status. Choose one next action and wait for my tool result. Treat unobserved facts as unknown. Keep earlier confirmed facts unless I update them. Do not claim to send, buy, reserve, or complete a real transaction. Stop when the quote is ready with required approvals recorded, or escalate if the constraints cannot be met.
+Your student club is serving lunch tomorrow at noon. Use a chatbot to help make a workable plan as the facts change. You choose what to ask and how to explain the problem.
 
-Begin with the next action you need. Keep the response under 150 words.
+You expect 24 people at tomorrow’s noon lunch. The supplier offers chicken sandwiches for $6, vegetarian wraps for $5, and drinks for $1. Delivery costs $12 for the whole order. Your total budget is $200; all prices include taxes and fees.
+
+Work with your chatbot to propose an order. Decide what information it needs and what you would want to check before committing. You can ask questions, challenge an answer, or revise your request.
+
+Continue with Parts 2–4 in index.html or the student handout.

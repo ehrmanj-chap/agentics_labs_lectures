@@ -1,5 +1,5 @@
 const fields = [...document.querySelectorAll('#worksheet textarea')];
-const storageKey = 'riverbot-lab1-v1';
+const storageKey = 'riverbot-lab1-lunch-v2';
 const saveStatus = document.querySelector('#status');
 try {
   const draft = JSON.parse(localStorage.getItem(storageKey) || '{}');
@@ -12,9 +12,20 @@ function save() {
   } catch { saveStatus.textContent = 'Browser saving unavailable. Use Download.'; }
 }
 fields.forEach(field => field.addEventListener('input', save));
-document.querySelector('#print').onclick = () => window.print();
+function preparePrint() {
+  fields.forEach(field => {
+    const previous = field.parentElement.querySelector('.print-response');
+    if (previous) previous.remove();
+    const response = document.createElement('div');
+    response.className = 'print-response print-only';
+    response.textContent = field.value || '[Not filled]';
+    field.after(response);
+  });
+}
+window.addEventListener('beforeprint', preparePrint);
+document.querySelector('#print').onclick = () => { preparePrint(); window.print(); };
 document.querySelector('#download').onclick = () => {
-  let output = '# Lab 1 — Human Agent Loop\n\nJordan Ehrman · Riverbot Agentics\n';
+  let output = '# Lab 1 — Plan the club lunch\n\nJordan Ehrman · Riverbot Agentics\n';
   fields.forEach(field => {
     const label = document.querySelector('label[for="' + field.id + '"]').textContent;
     output += '\n## ' + label + '\n\n' + (field.value || '[Not filled]') + '\n';
@@ -22,7 +33,7 @@ document.querySelector('#download').onclick = () => {
   const url = URL.createObjectURL(new Blob([output], { type: 'text/markdown' }));
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'Lab_1_My_Worksheet.md';
+  link.download = 'Lab_1_My_Lunch_Plan.md';
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   saveStatus.textContent = 'Worksheet downloaded.';
@@ -34,21 +45,3 @@ document.querySelector('#clear').onclick = () => {
     saveStatus.textContent = 'Draft cleared.';
   }
 };
-document.querySelectorAll('[data-copy]').forEach(button => {
-  button.onclick = async () => {
-    const source = document.getElementById(button.dataset.copy);
-    try {
-      await navigator.clipboard.writeText(source.textContent);
-      const old = button.textContent;
-      button.textContent = 'Copied';
-      setTimeout(() => { button.textContent = old; }, 1800);
-    } catch {
-      const range = document.createRange();
-      range.selectNodeContents(source);
-      const selection = getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-      button.textContent = 'Selected — press Ctrl/Cmd+C';
-    }
-  };
-});

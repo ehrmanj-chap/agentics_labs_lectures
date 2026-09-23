@@ -23,14 +23,14 @@ Recovered from Jordan’s **Beginner_Agentics_15_Week_Demo_Lab_Guide.docx** (Aug
 ## Design constraints retained
 
 - At most one hour of instructor preparation.
-- About 30 minutes of in-class student work.
+- About 30 minutes of in-class student work in the original sequence; this revised Lab 1 takes 20 minutes.
 - Browser first, with no-code or low-code entry points.
 - A visible artifact at the end of each lab.
 - A fallback when the live technology is unavailable.
 
 ## How this Lab 1 adapts the original
 
-The original Week 1 lab used the seven cards **GOAL, STATE, ACTION, TOOL, OBSERVATION, UPDATE, STOP**, a museum order for 24 educational prints, changing observation cards, and a one-page loop record. This version retains that structure and lets students use a chat model of their choice as the planning component, while humans supply simulated tool results.
+The original Week 1 lab named seven parts of a loop: **GOAL, STATE, ACTION, TOOL, OBSERVATION, UPDATE, STOP**. This revision teaches those ideas through a four-part club lunch problem. Students work individually or in pairs, use their own words in a chatbot, and supply changing facts over 20 minutes. Four short records replace the original diagram and command-style tool cards. A person supplies the observations; no connected tools or autonomous purchasing are implied.
 
 The earlier course syllabus introduced several chat platforms in Week 1, using the same request to compare behavior. This pack retains model choice and offers a second-model comparison as an extension. It moves the core class time toward the Human Agent Loop from the more detailed lab guide.
 

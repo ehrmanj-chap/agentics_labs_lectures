@@ -1,55 +1,66 @@
 # Agentics Labs & Lectures
 
-Hands-on AI and agentics labs with **Jordan Ehrman · Riverbot Agentics**. Built for business students and open to anyone curious.
+Hands-on AI labs with **Jordan Ehrman · Riverbot Agentics**. Built for business students and open to anyone curious.
 
-## Lab 1: Human Agent Loop
+## Lab 1: Human Agent Loop — Plan the club lunch
 
-A school wants 24 prints from a museum. Students choose a chat model, act as its tool operator, introduce changing inventory and delivery constraints, and audit the model’s next action and stopping behavior.
+A club lunch needs a workable plan. Students use a chatbot in their own words, then revise the plan as the guest list, stock and delivery options change. The four-part word problem takes **20 minutes**, individually or in pairs. Multiple menus can work.
 
-- **Teaching:** about 15 minutes, including login, a two-minute model ecosystem overview, four real Reddit examples, and a three-minute demo.
-- **Student lab:** 30 minutes; pairs or groups of 3–4; solo also works.
-- **Prerequisites:** a browser. No coding or paid personal AI plan required.
-- **Position in the course:** follows the Microsoft guest session on prompting. This lab studies the agent loop; it does not repeat that prompting lecture.
+- **Teaching:** about 18 minutes, including login, a short model ecosystem overview, four Reddit examples and a four-minute live demo.
+- **Student work:** four parts, about five minutes each; one conversation and four short records.
+- **Prerequisites:** a browser. No coding or personal paid AI plan required.
+- **Course fit:** follows the Microsoft guest session on prompting. The focus here is new facts, revised decisions, human confirmation and knowing when to stop.
 
 ## Open the materials
 
-Download this repository and open `index.html` in a browser. The lecture, demo and worksheet are static files; no installation or API key is needed. External AI portals and source links require internet access. If browser clipboard or local saving is unavailable, select the starter manually and download the worksheet.
+Download the repository and open `index.html`. The lecture, prepared demo and worksheet work as static files without an installation or API key. External AI portals and source links need internet access. You can also run `python3 -m http.server 8000` and open `http://localhost:8000`.
 
 | Material | File |
 | --- | --- |
 | Course home | [index.html](index.html) |
-| Browser presentation | [lab1/lecture.html](lab1/lecture.html) |
-| Editable PowerPoint, with speaker notes | [Lab_1_Human_Agent_Loop.pptx](downloads/Lab_1_Human_Agent_Loop.pptx) |
-| Student lab + local worksheet | [lab1/index.html](lab1/index.html) |
-| Interactive scripted demo | [lab1/demo.html](lab1/demo.html) |
-| Instructor run-of-show + answer key | [lab1/instructor.html](lab1/instructor.html) |
-| Plain-text speaker notes | [lab1/instructor-notes.md](lab1/instructor-notes.md) |
-| Blank worksheet | [lab1/worksheet.md](lab1/worksheet.md) |
-| Sources and credits | [lab1/sources.html](lab1/sources.html) |
-| Recovered 15-lab sequence | [COURSE_MAP.md](COURSE_MAP.md) |
+| Browser presentation · 20 slides | [lab1/lecture.html](lab1/lecture.html) |
+| Editable PowerPoint with speaker notes | [Lab_1_Human_Agent_Loop.pptx](downloads/Lab_1_Human_Agent_Loop.pptx) |
+| Student problem + saved lab record | [lab1/index.html](lab1/index.html) |
+| Two-page student handout | [Lab_1_Student_Handout.pdf](downloads/Lab_1_Student_Handout.pdf) |
+| Instructor cookbook · live prompts, talking points, answer key | [lab1/instructor.html](lab1/instructor.html) |
+| Printable instructor cookbook | [Lab_1_Instructor_Cookbook.pdf](downloads/Lab_1_Instructor_Cookbook.pdf) |
+| Prepared demo · fallback for the live chatbot | [lab1/demo.html](lab1/demo.html) |
+| Instructor guide + slide notes in Markdown | [lab1/instructor-notes.md](lab1/instructor-notes.md) |
+| Editable student worksheet in Markdown | [lab1/worksheet.md](lab1/worksheet.md) |
+| Sources, model data and image credits | [lab1/sources.html](lab1/sources.html) |
+| Original 15-lab sequence and adaptation notes | [COURSE_MAP.md](COURSE_MAP.md) |
 
-For a local web server, run `python3 -m http.server 8000` from this directory and open `http://localhost:8000`. The root directory is also ready for static hosting, including GitHub Pages. No hosting service is configured by this repository.
+The site is ready for static hosting. This repository does not configure a hosting service or collect student submissions.
 
 ### Presenting
 
-Use the arrow buttons or keyboard arrows to navigate. Toggle **Speaker notes** when needed. On the final WordArt slide, click **A quick thing before you go** to reveal the closing message. The PowerPoint uses a static final slide and contains the spoken transition in its notes. Use the browser lecture for the animated reveal.
+Use the arrow buttons or keyboard arrows to navigate the browser lecture. Home/End jump to the first/last slide. Speaker notes start hidden. On the final WordArt slide, click **A quick thing before you go** to reveal the closing message. PowerPoint has matching slide content and speaker notes, with a static closing slide.
+
+For the live demo, use the **instructor cookbook** alongside a fresh chatbot conversation. Its sample prompts are for the teacher. Students receive the word problem and choose their own wording. The prepared demo contains example responses; it has no live AI backend.
+
+### The lunch problem
+
+1. Plan for 24 people: one meal and one drink each, $200 total, lunch tomorrow at noon.
+2. Revise for 30 people, including 8 vegetarians, with only 18 chicken sandwiches available.
+3. Delivery cannot arrive until 12:30. Pickup at 11:15 removes the delivery fee, but a collector is not confirmed yet.
+4. A club member confirms collection and arrival before noon. Finish the proposal and reflect.
+
+Chicken sandwiches cost $6, vegetarian wraps $5, drinks $1 and whole-order delivery $12. All prices include taxes and fees. With 30 people, delivery allows at most 8 chicken sandwiches within the budget. Pickup allows up to the stock limit of 18. A final plan of 8 chicken, 22 wraps and 30 drinks costs **$188**; 18 chicken, 12 wraps and 30 drinks costs **$198**. Other valid menus are welcome. The task ends with a checked proposal, not a placed order.
+
+The student record saves in the current browser and downloads as Markdown. Print or download before leaving. Submit wherever the instructor specifies. If a chatbot is unavailable, use a partner to propose and check each plan, then compare with the prepared demo.
 
 ### Chapman access
 
-The model portal is **[PantherAI](https://pantherai.chapman.edu/login)**. Choose **Chapman SSO Login** and sign in with a Chapman account. Chapman identifies active students, faculty and staff as eligible, and the Library describes access as free. **PantherBot** is the separate campus-help chatbot. Model choices vary; record the model actually shown in the menu. Visiting participants can pair up, use an existing free chat account, or use the offline trace.
-
-### Lab behavior
-
-The demo is explicitly scripted, not a live AI backend. Students can run the provided starter and observations in any available chat model. Tools are simulated by people. No purchase, message, or reservation is made. The final approved quote is **24 Garden prints × $7 + $45 rush shipping = $213**. The model should stop after drafting the approved quote.
-
-The worksheet stays in the student’s browser and can be downloaded as Markdown. This site does not collect submissions. Students submit wherever their instructor specifies.
+Use **[PantherAI](https://pantherai.chapman.edu/login)**, choose **Chapman SSO Login**, and sign in with your Chapman account. Chapman identifies active students, faculty and staff as eligible; the Library describes access as free. **PantherBot** is the separate campus-help service. Model choices vary. Record the name shown in the menu. Visiting participants can pair up or use an existing free chat account.
 
 ## Editing and evidence
 
-The site uses plain HTML, CSS and JavaScript with no production dependencies or build step. Slide content is in `data/slides.json`; model evidence is in `data/model-snapshot.json` and `data/model-sizes.json`. Run `python3 scripts/sync_data.py` after changing slide or demo JSON to refresh the browser data files. PowerPoint is an editable delivery artifact; its charts include native editable data.
+Plain HTML, CSS and JavaScript; no production dependencies. The teaching content lives in `data/lab.json`, `data/slides.json` and `data/demo-steps.json`. Model evidence lives in `data/model-snapshot.json` and `data/model-sizes.json`.
 
-Research snapshot: **September 22, 2026**. Public login and access guidance were checked; the authenticated PantherAI student menu was not inspected. The LLM Stats chart is a selected price/ability snapshot, not a campus availability list or a permanent ranking. The second chart illustrates disclosed parameter counts. Reddit screenshots are historical anecdotes, not model benchmarks.
+Run `python3 scripts/sync_data.py` after editing JSON. This refreshes the student page, demo data, browser lecture data, worksheet and instructor guides. `scripts/build_handouts.py` generates the two PDFs using ReportLab. `scripts/build_deck.mjs` is the deck authoring source and requires `@oai/artifact-tool`; its header describes the runtime setup. Regenerate and visually review the downloads after content changes. `python3 scripts/check_consistency.py` checks the shared content, local links and lunch arithmetic.
 
-Visual direction comes from [Chapman Cultural Agents](https://github.com/ehrmanj-chap/chapman-cultural-agents). The original logo and contact come from [Riverbot Agentics](https://github.com/ehrmanj-chap/riverbot-agentics). Source links, qualifications and image credits are in the sources page and slide notes. Third-party images and brand assets retain their respective ownership; no blanket license is asserted over them.
+Research snapshot: **September 22, 2026**. The public login and access guidance were checked; the authenticated PantherAI student menu was not inspected. The selected LLM Stats price/ability data is a dated comparison, not a campus model list or permanent ranking. The size chart illustrates disclosed parameter counts. Reddit screenshots are historical anecdotes, not benchmarks.
+
+The burgundy gradient, serif typography, centered header, white cards and site icon follow [Chapman Cultural Agents](https://github.com/ehrmanj-chap/chapman-cultural-agents). Riverbot is the presenter and consulting identity. Source links and image credits are included in the sources page and slide notes. Third-party images and brand assets retain their respective ownership.
 
 Contact: **riverbotagentics@gmail.com**

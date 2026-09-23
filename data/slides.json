@@ -130,7 +130,7 @@
     "answer": "“prioritize.”",
     "body": [
       "The request never explicitly asked for a different word.",
-      "The response meets the literal wording and misses the obvious intent."
+      "Literal compliance. Unhelpful answer."
     ],
     "aside": "Technically compliant. Socially exhausting.",
     "notes": "The word prioritize does, spectacularly, have the same meaning as prioritize. This is the technically-correct gremlin. Ask the room what unstated condition they automatically added. “A different word.” We should still expect a useful assistant to infer that. This example does not prove that synonyms never share meanings, despite some Reddit comments saying so. It shows how literal compliance and useful help can part ways. Timing: 45 seconds.",
@@ -146,7 +146,7 @@
     "answer": "The next image: outer space.",
     "body": [
       "The user wanted more of the street.",
-      "The request gave a direction without a scale."
+      "Direction given. Scale missing."
     ],
     "aside": "We have left the neighborhood. Possibly the galaxy.",
     "notes": "This one was posted in r/ChatGPT, but the screenshot is Meta AI. Name that clearly. The user wanted a little more street around Santa and asked to zoom out. The bot went cosmic. The title itself admits “to be fair, Meta did listen.” It is a joke about missing scale, not evidence that an unrelated space image is a faithful camera zoom. If I tell an employee to reduce spending, they still need to know by how much and what must remain intact. Timing: 45 seconds.",
@@ -178,7 +178,7 @@
       "A useful plan has to survive new information.",
       "The club lunch needs more meals, a different menu, and a way to arrive on time."
     ],
-    "aside": "Watch for the moment when the bot should change its plan—or wait.",
+    "aside": "Watch for the moment when the bot should change its plan or wait.",
     "notes": "The jokes show gaps between a request and a useful response. Now let’s watch the same conversation meet changing facts. The goal stays simple: one meal and one drink for everyone, within budget, ready for noon. Timing: 20 seconds."
   },
   {
@@ -206,7 +206,7 @@
       "Late delivery made pickup worth considering.",
       "A person had to confirm collection before the plan was ready."
     ],
-    "aside": "New facts → revise → check → continue or stop.",
+    "aside": "Each new fact is a reason to revise, check, and decide what happens next.",
     "notes": "Ask for one new fact and the decision it changed. In our sample, 8 chicken, 22 wraps and 30 drinks cost $200 with delivery, then $188 with pickup. Keeping that menu is valid; 18 chicken and 12 wraps for $198 is also valid after pickup is confirmed. Do not imply there is one required menu. Timing: 30 seconds."
   },
   {
@@ -229,7 +229,7 @@
   {
     "kind": "transition",
     "sources": [],
-    "title": "Your conversation. Your decisions.",
+    "title": "Your conversation. Your decisions",
     "body": [
       "Use your own words to work through the problem.",
       "Keep all four parts in the same conversation.",
@@ -239,12 +239,12 @@
     "notes": "There is no prescribed starter and no special command language. Students choose what to tell the bot, what to ask, and which answer to challenge. In a pair, one can type while the other checks; switch halfway. Show the student lab page, not the instructor answer key. Timing: 20 seconds."
   },
   {
-    "title": "Four parts. Twenty minutes.",
+    "title": "Four parts. Twenty minutes",
     "kind": "lab",
     "body": [
       "0–5 · Make a first plan for 24 people.",
       "5–10 · Adjust to 30 people, diets and limited stock.",
-      "10–15 · Solve the timing problem; notice what is unconfirmed.",
+      "10–15 · Solve the timing problem and check what is unconfirmed.",
       "15–20 · Finish the proposal and reflect."
     ],
     "aside": "One meal + one drink each. $200 total. Lunch starts at noon.",
@@ -260,7 +260,7 @@
     "body": [
       "Four short records, plus your app and model name.",
       "A final menu, checked cost and pickup arrangement.",
-      "One thing the bot did well; one check or correction you made.",
+      "One thing the bot did well and one check or correction you made.",
       "A reason the planning task is finished."
     ],
     "aside": "Download your record or use the two-page handout.",

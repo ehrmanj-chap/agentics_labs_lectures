@@ -12,3 +12,6 @@ body.presentation{background:var(--page)}
 .transition .slide-body p{margin-bottom:2.4cqw}
 .transition .aside{font-size:1.85cqw;bottom:7cqw}
 .slide button:focus-visible{outline-color:var(--red)}
+
+/* Read the setup on the left; inspect the original conversation on the right. */
+.reddit-grid{grid-template-columns:40% 56%}.reddit-grid>img{grid-column:2;grid-row:1}.reddit-grid>div{grid-column:1;grid-row:1}

@@ -183,11 +183,11 @@ Sources:
 - Original Beginner_Agentics_15_Week_Demo_Lab_Guide.docx, Week 1
 - https://www.anthropic.com/engineering/building-effective-agents
 
-## Slide 17 — Your conversation. Your decisions.
+## Slide 17 — Your conversation. Your decisions
 
 There is no prescribed starter and no special command language. Students choose what to tell the bot, what to ask, and which answer to challenge. In a pair, one can type while the other checks; switch halfway. Show the student lab page, not the instructor answer key. Timing: 20 seconds.
 
-## Slide 18 — Four parts. Twenty minutes.
+## Slide 18 — Four parts. Twenty minutes
 
 Read each part when you reach it. Spend about five minutes per part. Write a few sentences about the plan and what changed. Multiple meal mixes can work. The point is to keep the constraints straight and know when you have enough evidence to finish. Students can work individually or in pairs using any available chatbot. Timing: 30 seconds.
 

@@ -12,7 +12,7 @@ function save() {
   } catch { saveStatus.textContent = 'Browser saving unavailable. Use Download.'; }
 }
 fields.forEach(field => field.addEventListener('input', save));
-document.querySelector('#print').onclick = () => {
+function preparePrint() {
   fields.forEach(field => {
     const previous = field.parentElement.querySelector('.print-response');
     if (previous) previous.remove();
@@ -21,8 +21,9 @@ document.querySelector('#print').onclick = () => {
     response.textContent = field.value || '[Not filled]';
     field.after(response);
   });
-  window.print();
-};
+}
+window.addEventListener('beforeprint', preparePrint);
+document.querySelector('#print').onclick = () => { preparePrint(); window.print(); };
 document.querySelector('#download').onclick = () => {
   let output = '# Lab 1 — Plan the club lunch\n\nJordan Ehrman · Riverbot Agentics\n';
   fields.forEach(field => {

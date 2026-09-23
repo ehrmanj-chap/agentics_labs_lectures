@@ -6,7 +6,7 @@ Hands-on AI and agentics labs with **Jordan Ehrman · Riverbot Agentics**. Built
 
 A school wants 24 prints from a museum. Students choose a chat model, act as its tool operator, introduce changing inventory and delivery constraints, and audit the model’s next action and stopping behavior.
 
-- **Teaching:** about 15 minutes, including login, a two-minute model ecosystem overview, four real Reddit examples, and a three-minute demo.
+- **Teaching:** about 18 minutes, including login, a two-minute model ecosystem overview, four real Reddit examples, and a three-minute demo.
 - **Student lab:** 30 minutes; pairs or groups of 3–4; solo also works.
 - **Prerequisites:** a browser. No coding or paid personal AI plan required.
 - **Position in the course:** follows the Microsoft guest session on prompting. This lab studies the agent loop; it does not repeat that prompting lecture.
@@ -46,10 +46,10 @@ The worksheet stays in the student’s browser and can be downloaded as Markdown
 
 ## Editing and evidence
 
-The site uses plain HTML, CSS and JavaScript with no production dependencies or build step. Slide content is in `data/slides.json`; model evidence is in `data/model-snapshot.json` and `data/model-sizes.json`. Run `python3 scripts/sync_data.py` after changing slide or demo JSON to refresh the browser data files. PowerPoint is an editable delivery artifact; its charts include native editable data.
+The site uses plain HTML, CSS and JavaScript with no production dependencies or build step. Slide content is in `data/slides.json`; model evidence is in `data/model-snapshot.json` and `data/model-sizes.json`. Run `python3 scripts/sync_data.py` after changing slide or demo JSON to refresh the browser data files. The browser lecture now has 20 slides, including six transition slides. The sync script also refreshes both instructor-note formats. **Draft status:** the checked-in PowerPoint is still the original 14-slide version; its matching revision must be uploaded before this branch is ready to merge. PowerPoint is an editable delivery artifact; its charts include native editable data.
 
 Research snapshot: **September 22, 2026**. Public login and access guidance were checked; the authenticated PantherAI student menu was not inspected. The LLM Stats chart is a selected price/ability snapshot, not a campus availability list or a permanent ranking. The second chart illustrates disclosed parameter counts. Reddit screenshots are historical anecdotes, not model benchmarks.
 
-Visual direction comes from [Chapman Cultural Agents](https://github.com/ehrmanj-chap/chapman-cultural-agents). The original logo and contact come from [Riverbot Agentics](https://github.com/ehrmanj-chap/riverbot-agentics). Source links, qualifications and image credits are in the sources page and slide notes. Third-party images and brand assets retain their respective ownership; no blanket license is asserted over them.
+The burgundy gradient, Georgia typography, centered header, white cards and site icon match [Chapman Cultural Agents](https://github.com/ehrmanj-chap/chapman-cultural-agents). Riverbot appears as the presenter and consulting identity. The original logo and contact come from [Riverbot Agentics](https://github.com/ehrmanj-chap/riverbot-agentics). Source links, qualifications and image credits are in the sources page and slide notes. Third-party images and brand assets retain their respective ownership; no blanket license is asserted over them.
 
 Contact: **riverbotagentics@gmail.com**

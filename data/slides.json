@@ -12,6 +12,17 @@
     "sources": []
   },
   {
+    "kind": "transition",
+    "sources": [],
+    "title": "Today’s lab question",
+    "body": [
+      "What does a model need around it to complete a task?",
+      "We will watch a museum order change, then run the same loop ourselves."
+    ],
+    "aside": "First, everyone needs a bot to work with.",
+    "notes": "The guest session covered how to ask. Today we look at what happens after an answer: what evidence arrives, how the plan changes, and when the system should wait. We will watch one short example, then you will operate the loop in groups. Let’s get a model open first. Timing: 20 seconds."
+  },
+  {
     "title": "Your bot for today",
     "kind": "access",
     "body": [
@@ -27,6 +38,17 @@
       "https://pantherai.chapman.edu/login",
       "https://libguides.chapman.edu/AI/approved_tools"
     ]
+  },
+  {
+    "kind": "transition",
+    "sources": [],
+    "title": "What you are choosing",
+    "body": [
+      "Your chat window is ready. The model menu chooses the engine inside it.",
+      "Before we begin, here is how models differ and what those differences mean for this lab."
+    ],
+    "aside": "Keep the model name you selected for your worksheet.",
+    "notes": "Once everyone is signed in, pause here. Choosing a model can feel like choosing between unfamiliar brands. The next three slides give just enough vocabulary to understand the menu and two comparison charts. No need to shop for a perfect model today. Timing: 15 seconds."
   },
   {
     "title": "One portal, several models",
@@ -72,6 +94,17 @@
       "https://huggingface.co/openai/gpt-oss-120b",
       "https://huggingface.co/deepseek-ai/DeepSeek-R1"
     ]
+  },
+  {
+    "kind": "transition",
+    "sources": [],
+    "title": "A capable model can still miss the point",
+    "body": [
+      "A benchmark score does not tell us whether this particular answer is useful.",
+      "These four conversations show gaps between the words, the context, and the intended result."
+    ],
+    "aside": "For each example: what did the person expect, and what did the bot do?",
+    "notes": "We have seen differences in size, price and benchmark ability. Now look at behavior in a conversation. These are historical anecdotes, so we cannot use them to rank today’s models. They make the gap between an instruction and a useful outcome easy to see. The guest already covered prompting; our question is what the surrounding process should notice. Timing: 20 seconds."
   },
   {
     "title": "Nineteen what, exactly?",
@@ -138,6 +171,17 @@
     ]
   },
   {
+    "kind": "transition",
+    "sources": [],
+    "title": "When the next answer changes the plan",
+    "body": [
+      "In a business task, a mismatch can affect stock, cost, or a deadline.",
+      "Our museum example adds new evidence after each turn. Watch which action changes, and why."
+    ],
+    "aside": "The goal stays the same: prepare a feasible quote with the required approvals.",
+    "notes": "Those examples were single conversational mismatches. Now we give the bot a task that takes several steps. The museum needs new information before it can quote an order, and later that information changes. Look for the point where the system must update its plan or ask a human. The next slide contrasts the behaviors before we open the demo. Timing: 20 seconds."
+  },
+  {
     "title": "One request, three behaviors",
     "kind": "demo",
     "quote": "“Can the museum supply 24 educational prints?”",
@@ -147,11 +191,23 @@
       "Agent loop: chooses a next action, observes the result, updates, and continues or stops."
     ],
     "aside": "Today we simulate the tools. The bot proposes; you supply the evidence.",
-    "notes": "Now let’s make this operational. A school wants 24 prints from a tiny museum. One system can tell us how to handle that. Another can check inventory when asked. An agent-style system can keep choosing the next step based on the result, up to a stopping rule. These are working classroom distinctions, not rigid product categories. One tool call alone doesn’t settle whether something is an agent. Open the Demo page and run the four beats. It is an explicitly scripted simulation, not live AI. For a live version, copy the starter into PantherAI and feed the observation cards. If the bot acts weird, lovely: that is data. Timing: 3 minutes including the demo.",
+    "notes": "Now let’s make this operational. A school wants 24 prints from a tiny museum. One system can tell us how to handle that. Another can check inventory when asked. An agent-style system can keep choosing the next step based on the result, up to a stopping rule. These are working classroom distinctions, not rigid product categories. One tool call alone doesn’t settle whether something is an agent. Open the Demo page and run the five beats. It is an explicitly scripted simulation, not live AI. For a live version, copy the starter into PantherAI and feed the observation cards. If the bot acts weird, lovely: that is data. Timing: 3 minutes including the demo.",
     "sources": [
       "Original Beginner_Agentics_15_Week_Demo_Lab_Guide.docx, Week 1 (Aug 10, 2026)",
       "https://www.anthropic.com/engineering/building-effective-agents"
     ]
+  },
+  {
+    "kind": "transition",
+    "sources": [],
+    "title": "What happened in the demo?",
+    "body": [
+      "A corrected stock count changed the product choice.",
+      "An earlier deadline required rush delivery.",
+      "The $213 quote needed customer and manager approval before the final draft."
+    ],
+    "aside": "Each observation changed the current state. That state determined the next action.",
+    "notes": "Return to the lecture after the five demo beats. Ask for one observation and the action it changed. River stock fell to 12, the deadline moved to October 4, and the final approved option was 24 Garden prints with rush shipping for $213. The system stopped after drafting the quote. Now we can name the parts of the loop you just watched. Timing: 25 seconds."
   },
   {
     "title": "The Human Agent Loop",
@@ -169,6 +225,18 @@
       "Original Beginner_Agentics_15_Week_Demo_Lab_Guide.docx, Week 1",
       "https://www.anthropic.com/engineering/building-effective-agents"
     ]
+  },
+  {
+    "kind": "transition",
+    "sources": [],
+    "title": "Now your group runs the tools",
+    "body": [
+      "The driver opens the starter in the chosen bot.",
+      "The tool operator supplies one observation card at a time.",
+      "The auditor records what changed and checks the stop condition."
+    ],
+    "aside": "In a pair, combine roles. On your own, take them in turn.",
+    "notes": "The labels are now attached to an example. During the lab, you provide the tool results that a connected application would normally supply. Give only one observation at a time and let the model respond before revealing the next. Use the provided starter; the assignment is to inspect the loop. The next slide gives the 30-minute schedule. Timing: 20 seconds."
   },
   {
     "title": "Lab 1: your turn",

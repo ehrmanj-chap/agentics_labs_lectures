@@ -1,21 +1,75 @@
 {
-  "starter": "You are the planning component in a classroom simulation for a tiny museum. A school wants 24 educational prints delivered by October 15. Today is October 1 in this fictional scenario. Total budget: $240 including shipping. Product preference: River print. Any substitute requires customer approval. Spending over $200 requires manager approval.\n\nYou have no connected tools in this exercise. I play the tool operator and supply observations. Available simulated tools: LOOKUP_INVENTORY, CALCULATE_QUOTE, REQUEST_APPROVAL, DRAFT_REPLY.\n\nFor each turn, briefly report GOAL, CURRENT STATE, NEXT ACTION + TOOL, EXPECTED OBSERVATION, and STOP / ESCALATE status. Choose one next action and wait for my tool result. Treat unobserved facts as unknown. Keep earlier confirmed facts unless I update them. Do not claim to send, buy, reserve, or complete a real transaction. Stop when the quote is ready with required approvals recorded, or escalate if the constraints cannot be met.\n\nBegin with the next action you need. Keep the response under 150 words.",
-  "cards": [
+  "title": "Plan the club lunch",
+  "course_title": "Human Agent Loop",
+  "duration": 20,
+  "intro": "Your student club is serving lunch tomorrow at noon. Use a chatbot to help make a workable plan as the facts change. You choose what to ask and how to explain the problem.",
+  "setup": "Work individually or in pairs. Open one new conversation in a chatbot of your choice and keep using it for all four parts. Record the app and model name. Read each part when you reach it; spend about five minutes on each.",
+  "menu": [
     {
-      "title": "Tool result 1 \u00b7 Initial inventory",
-      "text": "LOOKUP_INVENTORY result: River prints cost $8 each, with 30 available. Garden prints cost $7 each, with 40 available. Standard delivery takes 5 calendar days from today and costs $15 per order. The budget includes delivery. Calculate a quote, but do not send or purchase anything."
+      "item": "Chicken sandwich",
+      "price": 6
     },
     {
-      "title": "Observation 2 \u00b7 Stock changed",
-      "text": "UPDATE: The inventory system corrected its count. Only 12 River prints are available. Garden stock is still 40. The customer still needs 24 prints. What state changes, and what should happen next?"
+      "item": "Vegetarian wrap",
+      "price": 5
     },
     {
-      "title": "Observation 3 \u00b7 Deadline moved",
-      "text": "UPDATE: The customer now needs delivery by October 4. Standard delivery still takes 5 calendar days. Rush delivery takes 2 calendar days and costs $45 per order instead of $15. Today is still October 1. Any substitute needs customer approval and totals over $200 need manager approval. What can be done, and what must wait?"
+      "item": "Drink",
+      "price": 1
     },
     {
-      "title": "Observation 4 \u00b7 Approvals arrived",
-      "text": "REQUEST_APPROVAL result: The customer accepts 24 Garden prints. The manager approves the $213 total including rush delivery. Use the 2-calendar-day rush option. Draft a short customer reply and state the final stop condition. No real order has been placed."
+      "item": "Delivery, whole order",
+      "price": 12
     }
-  ]
+  ],
+  "rules": "Each person needs one meal and one drink. The total budget is $200. All listed prices include taxes and fees. This is a fictional planning exercise; no actual order is placed.",
+  "parts": [
+    {
+      "title": "Make a first plan",
+      "time": "0–5 minutes",
+      "facts": "You expect 24 people at tomorrow’s noon lunch. The supplier offers chicken sandwiches for $6, vegetarian wraps for $5, and drinks for $1. Delivery costs $12 for the whole order. Your total budget is $200; all prices include taxes and fees.",
+      "task": "Work with your chatbot to propose an order. Decide what information it needs and what you would want to check before committing. You can ask questions, challenge an answer, or revise your request.",
+      "record": "Record your proposed quantities and total. What is still unknown?",
+      "teacher_prompt": "I’m planning a fictional student club lunch tomorrow at noon for 24 people. Each needs one meal and one drink. Chicken sandwiches are $6, vegetarian wraps $5, drinks $1, and delivery is $12 for the entire order. All prices include taxes and fees; my total budget is $200. Help me propose an order and identify what I should check before committing. We are only planning.",
+      "teacher_say": "We have enough information to make a provisional plan. We do not yet know everyone’s dietary needs, the stock, or whether delivery will arrive on time.",
+      "teacher_check": "One possible starting plan is 24 chicken sandwiches, 24 drinks and delivery: 24 × $6 + 24 × $1 + $12 = $180. It fits the budget but still needs dietary, stock and timing checks. A mix of meals is equally valid.",
+      "teacher_followup": "Which parts of that plan are confirmed, and which are assumptions? Show me the arithmetic."
+    },
+    {
+      "title": "The guest list changes",
+      "time": "5–10 minutes",
+      "facts": "There will now be 30 people, including 8 vegetarians. The supplier has only 18 chicken sandwiches, but enough vegetarian wraps and drinks. The total budget is still $200. Everyone still needs one meal and one drink.",
+      "task": "Bring the new facts into the same conversation and work out a revised order. Check the arithmetic and the earlier requirements yourself. Do you need to change more than just the headcount?",
+      "record": "Record the revised quantities and total. What changed, and did the chatbot remember the other constraints?",
+      "teacher_prompt": "Update: there are now 30 people, including 8 vegetarians. The supplier has only 18 chicken sandwiches, but enough wraps and drinks. The $200 total budget and one meal plus one drink per person still apply. How should we revise the plan?",
+      "teacher_say": "Eight vegetarians means at least eight wraps. It does not mean everyone else needs chicken. The stock limit and the budget are different constraints.",
+      "teacher_check": "With delivery, 8 chicken sandwiches + 22 wraps + 30 drinks + $12 delivery = $48 + $110 + $30 + $12 = $200. All 30 wraps also work at $192. At most 8 chicken sandwiches fit the budget while delivery is included.",
+      "teacher_followup": "Check the total including delivery. Does every person get a meal and a drink, with at least eight vegetarian meals?"
+    },
+    {
+      "title": "Delivery falls through",
+      "time": "10–15 minutes",
+      "facts": "The supplier’s earliest delivery is 12:30 p.m., after the noon lunch starts. Pickup is available at 11:15 a.m. and removes the $12 delivery fee. A club member might collect the order, but they have not confirmed.",
+      "task": "Explore a workable proposal with the chatbot. Decide what you can settle now and what still needs a person to confirm. Keep the headcount, dietary needs, stock and budget in view.",
+      "record": "Record a provisional plan and the confirmation it still needs. Has the chatbot treated a possibility as a promise?",
+      "teacher_prompt": "The earliest delivery is 12:30 p.m., but lunch starts at noon. We can pick up at 11:15 a.m. with no delivery fee. A club member might collect it, but has not confirmed. What can we plan now, and what must wait?",
+      "teacher_say": "A cheaper order is useful, but it does not get the food to the event. “Might collect” is not a confirmed pickup.",
+      "teacher_check": "Pickup could solve the timing problem, but the collector and arrival before noon are still unconfirmed. Keeping 8 chicken, 22 wraps and 30 drinks costs $188 with pickup. Changing to 18 chicken, 12 wraps and 30 drinks costs $198. Either is a provisional option; there is no need to spend all $200.",
+      "teacher_followup": "What evidence do we need before we call pickup a confirmed plan? What should we do if the member cannot collect it?"
+    },
+    {
+      "title": "Close the loop",
+      "time": "15–20 minutes",
+      "facts": "The club member confirms that they can collect the order at 11:15 a.m. and bring it to the lunch before noon.",
+      "task": "Finish a short proposal with the meal and drink quantities, total cost, and pickup arrangement. Check it against all the facts. Then look back at the conversation: what did the chatbot do well, and what did you have to check or correct?",
+      "record": "Record the final proposal, one thing the chatbot did well, one check or correction you made, and why the planning task is finished.",
+      "teacher_prompt": "The club member confirms pickup at 11:15 a.m. and arrival at the lunch before noon. Give me a short final proposal with quantities, total cost and collection details. Explain why our planning task is complete. No order has been placed.",
+      "teacher_say": "We can stop because the proposal meets the constraints and the pickup is confirmed. Finishing a plan is different from placing an order.",
+      "teacher_check": "Example final proposal: 8 chicken sandwiches, 22 vegetarian wraps and 30 drinks, total $188. The confirmed club member collects at 11:15 a.m. and brings the order before noon. This serves 30 people, covers 8 vegetarians, uses no more than 18 chicken sandwiches and stays within $200. Planning is complete; ordering is a separate action.",
+      "teacher_followup": "Point to the evidence for the quantity, dietary requirement, stock, budget and arrival time."
+    }
+  ],
+  "finish": "Save your four short records and the app/model name. A few sentences per part are enough. Multiple menus can work; explain your choices. A useful correction counts as evidence of learning.",
+  "extension": "Finished early? Try a different meal mix, or compare the first request in a second model. What changes, and what stays true?",
+  "fallback": "If you cannot use a chatbot, work with a partner: one proposes a plan and the other checks it. Use the four parts in order and record the same decisions. Compare with the prepared demo after you finish."
 }

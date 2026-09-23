@@ -1,33 +1,51 @@
-"""Refresh browser data from the editable JSON sources. No dependencies."""
+"""Generate teaching pages, notes and worksheets from the editable JSON sources."""
 from pathlib import Path
 import json
-import html
-import re
+from html import escape as e
 root = Path(__file__).resolve().parents[1]
-def declaration(name, file):
-    data = json.loads((root / 'data' / file).read_text())
-    return 'const ' + name + '=' + json.dumps(data, ensure_ascii=False) + ';\n'
-(root / 'lab1' / 'lecture-data.js').write_text(
-    declaration('slides', 'slides.json') + declaration('modelData', 'model-snapshot.json')
-    + declaration('sizeData', 'model-sizes.json'))
-(root / 'lab1' / 'demo-data.js').write_text(declaration('demoSteps', 'demo-steps.json'))
-
-# Keep the printable and browser instructor notes in the same slide order.
-slides = json.loads((root / 'data' / 'slides.json').read_text())
-notes_md = '\n\n'.join(
-    f"## Slide {number} — {slide['title']}\n\n{slide['notes']}"
-    for number, slide in enumerate(slides, 1)
-)
-notes_html = '\n'.join(
-    '<section class="paper"><p class="eyebrow">Slide ' + str(number)
-    + '</p><h2>' + html.escape(slide['title']) + '</h2><p>'
-    + html.escape(slide['notes']) + '</p></section>'
-    for number, slide in enumerate(slides, 1)
-)
-for filename, content in [('instructor-notes.md', notes_md), ('instructor.html', notes_html)]:
-    path = root / 'lab1' / filename
-    path.write_text(re.sub(
-        r'<!-- SLIDE_NOTES_START -->.*?<!-- SLIDE_NOTES_END -->',
-        lambda _: '<!-- SLIDE_NOTES_START -->\n' + content + '\n<!-- SLIDE_NOTES_END -->',
-        path.read_text(), flags=re.S,
-    ))
+def load(name): return json.loads((root/'data'/name).read_text())
+def write(name,text): (root/name).write_text(text,encoding='utf-8')
+def declaration(name,file): return 'const '+name+'='+json.dumps(load(file),ensure_ascii=False)+';\n'
+lab,slides=load('lab.json'),load('slides.json')
+write('lab1/lecture-data.js',declaration('slides','slides.json')+declaration('modelData','model-snapshot.json')+declaration('sizeData','model-sizes.json'))
+write('lab1/demo-data.js',declaration('demoSteps','demo-steps.json'))
+nav='<div class="toolbar no-print"><nav class="wrap" aria-label="Course navigation"><a class="brand" href="../index.html">Chapman Agentics Labs</a><a href="lecture.html">Lecture</a><a href="demo.html">Demo</a><a href="index.html">Lab 1</a><a href="instructor.html">Instructor guide</a></nav></div>'
+footer='<footer class="wrap">Jordan Ehrman · Riverbot Agentics<br><a href="sources.html">Sources &amp; credits</a> · <a href="mailto:riverbotagentics@gmail.com">riverbotagentics@gmail.com</a></footer>'
+def page(title,body,scripts=''):
+ return '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' · Chapman Agentics Labs</title><link rel="icon" href="../assets/chapman-site-icon.svg"><link rel="stylesheet" href="../styles.css"></head><body>'+nav+'<main class="wrap">'+body+'</main>'+footer+scripts+'</body></html>\n'
+def paper(text): return '<section class="paper">'+text+'</section>'
+def para(text,cls=''): return '<p'+(' class="'+cls+'"' if cls else '')+'>'+e(text)+'</p>'
+def link(href,text): return '<a href="'+href+'">'+e(text)+'</a>'
+menu='<div class="menu-grid">'+''.join('<div class="menu-item"><span>'+e(m['item'])+'</span><strong>$'+str(m['price'])+'</strong></div>' for m in lab['menu'])+'</div>'
+intro=paper('<p class="eyebrow">Lab 01 · Human Agent Loop · 20 minutes</p><h1>'+lab['title']+'</h1>'+para(lab['intro'],'lead')+para(lab['setup'])+'<div class="actions no-print"><a class="button" href="https://pantherai.chapman.edu/login" target="_blank" rel="noopener">Open PantherAI</a><a class="button secondary" href="../downloads/Lab_1_Student_Handout.pdf">Student handout PDF</a><button class="secondary" id="print">Print my lab record</button></div><p class="small muted">Chapman users: choose Chapman SSO Login. Visiting? Pair up or use a free chat account you already have.</p>')
+body=intro+paper('<h2>The lunch counter</h2>'+menu+para(lab['rules'],'notice'))
+fields='<div class="worksheet-meta"><label for="model">Your name(s), app and model</label><textarea id="model" name="model" rows="2" placeholder="Use the model name shown in your chat. If it is not shown, say so."></textarea></div>'
+for i,p in enumerate(lab['parts'],1):
+ body+=paper('<div class="part-heading"><span class="part-number">'+str(i)+'</span><div><p class="eyebrow">'+e(p['time'])+'</p><h2>'+e(p['title'])+'</h2></div></div>'+para(p['facts'],'lead')+para(p['task'])+'<p class="record-prompt"><strong>Your record:</strong> '+e(p['record'])+'</p>')
+ fields+='<div class="record-field"><label for="part'+str(i)+'">Part '+str(i)+' · '+e(p['title'])+'</label>'+para(p['record'],'small muted')+'<textarea id="part'+str(i)+'" name="part'+str(i)+'" rows="5" placeholder="A few sentences are enough."></textarea></div>'
+body+='<section class="paper worksheet"><h2>Your lab record</h2>'+para(lab['finish'])+'<p class="small muted">Saved in this browser only. Download before leaving and submit wherever your instructor specifies. This page does not collect submissions.</p><form id="worksheet">'+fields+'</form><div class="actions no-print"><button id="download">Download my record</button><button class="secondary" id="clear">Clear this browser’s draft</button><span id="status" class="save-status" role="status" aria-live="polite"></span></div></section>'
+body+=paper('<h2>If you have a little extra time</h2>'+para(lab['extension'])+'<details><summary>No chatbot available?</summary>'+para(lab['fallback'])+link('demo.html','Open the prepared example')+'</details>')
+write('lab1/index.html',page(lab['title'],body,'<script src="lab.js"></script>'))
+worksheet='# Lab 1 — Plan the club lunch\n\nHuman Agent Loop · 20 minutes · Jordan Ehrman / Riverbot Agentics\n\n'+lab['intro']+'\n\n'+lab['setup']+'\n\n'+lab['rules']+'\n\n**Name(s), app and model:**\n\n'
+for i,p in enumerate(lab['parts'],1): worksheet+=f"## Part {i} · {p['title']} ({p['time']})\n\n{p['facts']}\n\n{p['task']}\n\n**Your record:** {p['record']}\n\n[Write here.]\n\n"
+worksheet+=lab['finish']+'\n\n**No chatbot?** '+lab['fallback']+'\n'
+write('lab1/worksheet.md',worksheet)
+demo=paper('<p class="eyebrow">Prepared example · Four parts · About 4 minutes</p><h1>The lunch plan meets reality</h1><p class="lead">One conversation. New facts. A few reasons to pause.</p><p class="notice">These are prepared example responses, not a live AI connection. For your on-screen chatbot walkthrough, use the <a href="instructor.html#cookbook">instructor cookbook</a>. Several different menus can work.</p><div class="actions"><button id="back" class="secondary">Previous part</button><span id="beat" aria-live="polite"></span><button id="advance">Next part</button><button id="reset" class="secondary">Start again</button></div>')+'<section class="paper demo-trace" id="demo-output" aria-live="polite" aria-atomic="true"></section>'+paper('<h2>Ask the room</h2><p>Which new fact changed the plan? What still needs checking? When do we have enough evidence to stop planning?</p><p class="muted">Listen for reasoning about the constraints. Exact phrasing and a single “correct” menu are not the goal.</p>')
+write('lab1/demo.html',page('Lunch demo',demo,'<script src="demo-data.js"></script><script src="demo.js"></script>'))
+prep=['Open a fresh chatbot conversation and check the model name. Keep personal or student information out of the fictional example.','Open the lecture, this cookbook, and the prepared demo in separate tabs. Have the student page or handout ready to share.','Read the four turns once. The sample route costs $180, then $200, then $188 with pickup. Other menus can work.','If login takes more than two minutes, pair students up. The prepared example and printable handout work without a live model.']
+timing=[('0–3','Introduce yourself; students open a chatbot.'),('3–5','App, model and tools; the two comparison charts.'),('5–8','Four Reddit moments and quick audience reactions.'),('8–12','Live lunch demo: four turns; use the cookbook below.'),('12–18','Debrief, name the loop, explain the lab and give the closing invitation.'),('18–38','Students work through the four parts, about five minutes each.')]
+checks=[('Serves everyone','30 meals and 30 drinks.'),('Meets dietary needs','At least 8 vegetarian wraps; more are allowed.'),('Respects stock','No more than 18 chicken sandwiches.'),('Fits the budget','No more than $200 including any delivery fee.'),('Arrives on time','Confirmed 11:15 a.m. pickup and arrival before noon.'),('Stops at the right point','A checked proposal, with no claim that an order was placed.')]
+guide=paper('<p class="eyebrow">Jordan’s teaching copy</p><h1>Instructor cookbook</h1><p class="lead">A guided demo for you. An open-ended problem for the room.</p><p>Allow about 18 minutes for the lecture and demo, followed by 20 minutes of student work. The Microsoft guest session has already covered prompting; today is about keeping a plan grounded as the facts change.</p><div class="actions"><a class="button" href="../downloads/Lab_1_Instructor_Cookbook.pdf">Download cookbook PDF</a><a class="button secondary" href="lecture.html">Open lecture</a><a class="button secondary" href="demo.html">Prepared demo</a></div><h2>Five-minute prep</h2><ol>'+''.join('<li>'+e(x)+'</li>' for x in prep)+'</ol><h2>Run of show</h2><table><thead><tr><th scope="col">Minutes</th><th scope="col">Activity</th></tr></thead><tbody>'+''.join('<tr><td>'+a+'</td><td>'+b+'</td></tr>' for a,b in timing)+'</tbody></table><p class="small muted">The browser lecture supports arrow keys, Home/End, speaker notes and a final click-to-reveal message. The PowerPoint has matching content and notes, with a static closing slide.</p>')
+guide+=paper('<h2 id="cookbook">The on-screen walkthrough</h2><p>Use one fresh conversation. The sample messages below are for your demo; students receive the word problem and choose their own wording. Allow about a minute per part. Show one new fact at a time.</p><p>If a response is slow, say “Let’s use a prepared response so we can inspect the decision,” and open the corresponding part of the demo. If it makes a mistake, keep it on screen and check it together.</p>')
+md='# Instructor cookbook — Plan the club lunch\n\nJordan Ehrman · Riverbot Agentics\n\nAbout 18 minutes teaching + 20 minutes student work.\n\n## Five-minute prep\n\n'+'\n'.join('- '+x for x in prep)+'\n\n## Run of show\n\n'+'\n'.join('- '+a+' minutes: '+b for a,b in timing)+'\n\n## On-screen walkthrough\n\nUse one fresh conversation. These sample messages are for the instructor; students use their own words. About one minute per part. If the model stalls, open the prepared demo. If it makes a mistake, inspect it together.\n'
+for i,p in enumerate(lab['parts'],1):
+ guide+=paper('<p class="eyebrow">Demo part '+str(i)+' · About 1 minute</p><h2>'+e(p['title'])+'</h2><h3>Type or say</h3><blockquote class="sample-message">'+e(p['teacher_prompt'])+'</blockquote><h3>Say to the room</h3>'+para(p['teacher_say'])+'<h3>Look for</h3>'+para(p['teacher_check'])+'<h3>If it needs a nudge</h3>'+para(p['teacher_followup']))
+ md+=f"\n## Demo part {i} — {p['title']}\n\n**Type or say:** {p['teacher_prompt']}\n\n**Say to the room:** {p['teacher_say']}\n\n**Look for:** {p['teacher_check']}\n\n**If it needs a nudge:** {p['teacher_followup']}\n"
+answer='<h2>Answer key: accept more than one menu</h2><p>Let C be the number of chicken sandwiches. For 30 guests, the other 30 − C meals are wraps.</p><table><thead><tr><th scope="col">Stage</th><th scope="col">Total</th><th scope="col">Valid chicken quantities</th></tr></thead><tbody><tr><td>Part 1 · 24 people, delivery</td><td>$156 + C</td><td>0–24; dietary needs still unknown</td></tr><tr><td>Part 2 · 30 people, delivery</td><td>$192 + C</td><td>0–8; budget is the tighter limit</td></tr><tr><td>Parts 3–4 · 30 people, pickup</td><td>$180 + C</td><td>0–18; stock is the tighter limit</td></tr></tbody></table><p>Pickup removes the delivery fee; it does not require a new menu. Keeping 8 chicken and 22 wraps costs $188. Using all 18 available chicken sandwiches with 12 wraps costs $198. All wraps cost $180. All are valid after collection is confirmed.</p><h3>Check the proposal against the facts</h3><table><tbody>'+''.join('<tr><th scope="row">'+a+'</th><td>'+b+'</td></tr>' for a,b in checks)+'</tbody></table><h3>While students work</h3><p>At five-minute intervals, invite the room to move to the next part. Ask: “Which facts are you carrying forward?” and “What is still only an assumption?” Give students time to notice their own arithmetic or timing error before supplying a correction.</p><h3>Two-minute debrief, if time allows</h3><p>Ask for one useful response and one thing a human had to check. Connect their examples to goal, state, action, observation, update and stop. A real agent would need connected tools and permissions to act; here, a person supplied the facts.</p><p>Assess the explanation and the final constraints. A student who catches and explains a model error has useful evidence. No prescribed prompt, seven-label diagram or full transcript is required.</p>'
+guide+=paper(answer)
+md+='\n## Answer key\n\nFor C chicken sandwiches, Part 1 costs $156 + C (0–24 chicken). Part 2 costs $192 + C (0–8 chicken). Pickup in Parts 3–4 costs $180 + C (0–18 chicken). Other meals are wraps. Pickup removes the delivery fee; the menu may stay the same.\n\n'+'\n'.join('- **'+a+':** '+b for a,b in checks)+'\n\nAt five-minute intervals, invite students to the next part. Ask which facts carried forward and what is still an assumption. Accept different menus that meet all constraints. No prescribed prompt, diagram or transcript is required.\n'
+notes_html=''.join('<details class="speaker-note"><summary>'+str(i)+' · '+e(s['title'])+'</summary>'+para(s['notes'])+''.join('<p class="small source">'+(link(x,x) if x.startswith('https://') else e(x))+'</p>' for x in s['sources'])+'</details>' for i,s in enumerate(slides,1))
+guide+=paper('<h2>Slide-by-slide speaker notes</h2>'+notes_html)
+write('lab1/instructor.html',page('Instructor cookbook',guide))
+write('lab1/instructor-notes.md',md+'\n\n# Slide-by-slide speaker notes\n\n'+'\n\n'.join(f"## Slide {i} — {s['title']}\n\n{s['notes']}"+ ('\n\nSources:\n'+'\n'.join('- '+x for x in s['sources']) if s['sources'] else '') for i,s in enumerate(slides,1))+'\n')
+print('Synced lecture, demo, lab, worksheet and instructor guides from data/*.json')

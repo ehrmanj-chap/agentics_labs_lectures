@@ -1,5 +1,13 @@
 # Agentics Labs & Lectures
 
+> **Student start:** [Open the AI Garage lab website](https://ehrmanj-chap.github.io/agentics_labs_lectures/). A web browser is enough. You do not need to download this repository, install coding tools or pay for an AI subscription.
+>
+> **Facilitator start:** [Lab 1 instructor cookbook](lab1/instructor.html) | [Prepared offline-friendly demo](lab1/demo.html) | [Downloadable handouts](downloads/) | [Course map](COURSE_MAP.md).
+>
+> **What is ready?** **Lab 1** is complete. **Labs 2–15 are a planned teaching sequence, not 14 complete lesson packs.** To change a lesson, work from a reviewed GitHub branch and check that all linked student materials stay consistent.
+>
+> **Different projects:** This is the club's beginner lesson portal, **not** the [public cultural-agents website](https://github.com/ehrmanj-chap/chapman-cultural-agents) or the [internal Giulia/Mei tester](https://github.com/ehrmanj-chap/giulia-tester). Editing one does not automatically update the others.
+
 Hands-on AI labs with **Jordan Ehrman · Riverbot Agentics**. Built for business students and open to anyone curious.
 
 ## Lab 1: Human Agent Loop — Plan the club lunch
@@ -13,7 +21,7 @@ A club lunch needs a workable plan. Students use a chatbot in their own words, t
 
 ## Open the materials
 
-Download the repository and open `index.html`. The lecture, prepared demo and worksheet work as static files without an installation or API key. External AI portals and source links need internet access. You can also run `python3 -m http.server 8000` and open `http://localhost:8000`.
+Most people should open the [published lab portal](https://ehrmanj-chap.github.io/agentics_labs_lectures/) directly. If a local copy is needed, download the repository and open `index.html`; the lecture, prepared demo and worksheet work as static files without an installation or API key. External AI portals and source links need internet access. You can also run `python3 -m http.server 8000` and open `http://localhost:8000`.
 
 | Material | File |
 | --- | --- |
